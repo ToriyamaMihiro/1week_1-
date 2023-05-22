@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -71,6 +72,7 @@ public class PlayerScript : MonoBehaviour
         }
         if (hp <= 0)
         {
+            SceneManager.LoadScene("GameOver");
             // 自身を消す
             Destroy(gameObject);
         }

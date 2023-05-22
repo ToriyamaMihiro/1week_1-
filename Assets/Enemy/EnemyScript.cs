@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class EnemyScript : MonoBehaviour
         }
         if (hp <= 0)
         {
+            SceneManager.LoadScene("GameClear");
             // Ž©g‚ðÁ‚·
             Destroy(gameObject);
         }
