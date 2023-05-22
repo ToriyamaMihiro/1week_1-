@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HandL : MonoBehaviour
 {
+    public GameObject BulletPrefab;
     public float hand_speed = 0.1f;
     public float cricle_radius = 5.0f;
     private Vector3 initPosition;
