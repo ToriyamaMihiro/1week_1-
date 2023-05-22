@@ -11,6 +11,8 @@ public class PlayerScript : MonoBehaviour
     Vector3 bullet_pos;//弾の位置
     float xLimit = 12.3f;
     float yLimit = 12.0f;
+    int maxHp = 5;//最大HP
+    int hp;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,7 @@ public class PlayerScript : MonoBehaviour
         /*---- 初期化 ----*/
         transform.position = new Vector3(0, -5, 0);
         bullet_pos = transform.Find("BulletPosition").localPosition;
+        hp = maxHp;
     }
 
     // Update is called once per frame
@@ -61,11 +64,16 @@ public class PlayerScript : MonoBehaviour
         // 当たったのがプレイヤーの弾
         if (other.gameObject.CompareTag("Enemy"))
         {
-            // 自身を消す
-            Destroy(gameObject);
+            hp--;
 
             // 弾も消す
             Destroy(other.gameObject);
         }
+        if (hp <= 0)
+        {
+            // 自身を消す
+            Destroy(gameObject);
+        }
+
     }
 }
