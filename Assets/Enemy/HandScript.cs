@@ -46,7 +46,7 @@ public class HandScript : MonoBehaviour
 
         //’e‚Ì”­ŽË
         fire_frame++;
-        if (fire_frame % public float bulletCoolTime = 25.0f; == 0)//10•b‚²‚Æ‚É”­ŽË
+        if (fire_frame % bulletCoolTime == 0)//10•b‚²‚Æ‚É”­ŽË
         {
             Instantiate(BulletPrefab, transform.position + bullet_pos, Quaternion.identity);
         }
