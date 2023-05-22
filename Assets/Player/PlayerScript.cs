@@ -12,7 +12,7 @@ public class PlayerScript : MonoBehaviour
     Vector3 bullet_pos;//弾の位置
     float xLimit = 12.3f;
     float yLimit = 12.0f;
-    int maxHp = 5;//最大HP
+    public int maxHp = 5;//最大HP
     int hp;
 
     // Start is called before the first frame update
@@ -62,8 +62,8 @@ public class PlayerScript : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        // 当たったのがプレイヤーの弾
-        if (other.gameObject.CompareTag("Enemy"))
+        // 当たったのがエネミーの弾
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("EnemyBullet"))
         {
             hp--;
 

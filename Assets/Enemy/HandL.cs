@@ -8,8 +8,11 @@ public class HandL : MonoBehaviour
     public float hand_speed = 0.1f;
     public float cricle_radius = 5.0f;
     private Vector3 initPosition;
-    public float fire_frame = 0;
+    float fire_frame = 0;
     Vector3 bullet_pos;//’e‚ÌˆÊ’u
+    public float bulletCoolTime = 25.0f;//’e‚ÌƒN[ƒ‹ƒ^ƒCƒ€
+    public int maxHp = 20;//Å‘åHP
+    int hp;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +20,7 @@ public class HandL : MonoBehaviour
         transform.position = new Vector3(-10,0 , 0);
         initPosition = transform.position;
         bullet_pos = transform.Find("BulletPosition").localPosition;
+        hp = maxHp;
     }
 
     void Circle()
@@ -42,7 +46,7 @@ public class HandL : MonoBehaviour
 
         //’e‚Ì”­Ë
         fire_frame++;
-        if (fire_frame % 25 == 0)//10•b‚²‚Æ‚É”­Ë
+        if (fire_frame % bulletCoolTime == 0)//10•b‚²‚Æ‚É”­Ë
         {
             Instantiate(BulletPrefab, transform.position + bullet_pos, Quaternion.identity);
         }
@@ -52,4 +56,23 @@ public class HandL : MonoBehaviour
         }
 
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // “–‚½‚Á‚½‚Ì‚ªƒvƒŒƒCƒ„[‚Ì’e
+        if (other.gameObject.CompareTag("PlayerBullet"))
+        {
+            hp--;
+
+            // ’e‚àÁ‚·
+            Destroy(other.gameObject);
+        }
+        if (hp <= 0)
+        {
+            // ©g‚ğÁ‚·
+            Destroy(gameObject);
+        }
+
+    }
+
 }
