@@ -9,6 +9,8 @@ public class PlayerScript : MonoBehaviour
     /*---- 変数宣言 ----*/
     public float move_speed = 0.01f;
     Vector3 bullet_pos;//弾の位置
+    float xLimit = 12.3f;
+    float yLimit = 12.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,7 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         /*---- キー移動 ----*/
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -42,19 +45,27 @@ public class PlayerScript : MonoBehaviour
         /*---- 弾の発射 ----*/
         if (Input.GetButtonDown("Fire1"))
         {
-            Instantiate(BulletPrefab,transform.position + bullet_pos,Quaternion.identity);
+            Instantiate(BulletPrefab, transform.position + bullet_pos, Quaternion.identity);
         }
+
+
+        Vector3 player_pos = transform.position;
+        player_pos.x = Mathf.Clamp(player_pos.x, -xLimit, xLimit);
+        player_pos.y = Mathf.Clamp(player_pos.y, -yLimit, yLimit);
+
+        transform.position = new Vector2(player_pos.x, player_pos.y);
+
     }
     void OnTriggerEnter2D(Collider2D other)
-{
-    // 当たったのがプレイヤーの弾
-    if (other.gameObject.CompareTag("Enemy"))
     {
-        // 自身を消す
-        Destroy(gameObject);
+        // 当たったのがプレイヤーの弾
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            // 自身を消す
+            Destroy(gameObject);
 
-        // 弾も消す
-        Destroy(other.gameObject);
+            // 弾も消す
+            Destroy(other.gameObject);
+        }
     }
-}
 }
