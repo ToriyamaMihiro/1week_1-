@@ -19,7 +19,7 @@ public class EnemyBulletScript : MonoBehaviour
     void Update()
     {
         // ˆÊ’u‚ÌXV
-        transform.Translate(0, bullet_speed * Time.deltaTime, 0);
+        transform.Translate(0, -bullet_speed * Time.deltaTime, 0);
 
         //ŽžŠÔ‚É‚È‚Á‚½‚ç’e‚ðÁ‚·
         if (++frame_count > delete_frame)

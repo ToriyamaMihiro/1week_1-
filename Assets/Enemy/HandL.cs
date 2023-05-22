@@ -42,7 +42,7 @@ public class HandL : MonoBehaviour
 
         //’e‚Ì”­ŽË
         fire_frame++;
-        if (fire_frame % 10 == 0)//10•b‚²‚Æ‚É”­ŽË
+        if (fire_frame % 25 == 0)//10•b‚²‚Æ‚É”­ŽË
         {
             Instantiate(BulletPrefab, transform.position + bullet_pos, Quaternion.identity);
         }
