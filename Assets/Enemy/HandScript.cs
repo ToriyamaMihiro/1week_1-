@@ -18,7 +18,7 @@ public class HandScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(10, 0, 0);
+        transform.position = new Vector3(0, 0, 0);
         initPosition = transform.position;
         bullet_pos = transform.Find("BulletPosition").localPosition;
         hp = maxHp;
@@ -34,8 +34,8 @@ public class HandScript : MonoBehaviour
 
         pos.y = Mathf.Sin(rad) * cricle_radius;
 
-        transform.position = pos ;
-       
+        transform.position = pos;
+
     }
 
     // Update is called once per frame
@@ -57,22 +57,23 @@ public class HandScript : MonoBehaviour
 
 
     }
-         void OnTriggerEnter2D(Collider2D other)
-{
-    // 当たったのがプレイヤーの弾
-    if (other.gameObject.CompareTag("PlayerBullet"))
+    void OnTriggerEnter2D(Collider2D other)
     {
-        hp--;
+        // 当たったのがプレイヤーの弾
+        if (other.gameObject.CompareTag("PlayerBullet"))
+        {
+           hp--;
 
-        // 弾も消す
-        Destroy(other.gameObject);
-    }
-    if (hp <= 0)
-    {
-        // 自身を消す
-        Destroy(gameObject);
-    }
+            // 弾も消す
+           Destroy(other.gameObject);
+        }
+        if (hp <= 0)
+        {
+            // 自身を消す
+         // Destroy(gameObject);
+            Debug.Log("Destroy");
+        }
 
-}
+    }
 
 }

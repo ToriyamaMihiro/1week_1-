@@ -17,7 +17,7 @@ public class HandL : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(-10,0 , 0);
+        transform.position = new Vector3(0,0 , 0);
         initPosition = transform.position;
         bullet_pos = transform.Find("BulletPosition").localPosition;
         hp = maxHp;
@@ -62,15 +62,15 @@ public class HandL : MonoBehaviour
         // 当たったのがプレイヤーの弾
         if (other.gameObject.CompareTag("PlayerBullet"))
         {
-            hp--;
+           hp--;
 
             // 弾も消す
-            Destroy(other.gameObject);
+           Destroy(other.gameObject);
         }
         if (hp <= 0)
         {
             // 自身を消す
-            Destroy(gameObject);
+          //  Destroy(gameObject);
         }
 
     }

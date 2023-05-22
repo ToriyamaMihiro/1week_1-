@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class PlayerScript : MonoBehaviour
 {
@@ -10,10 +12,15 @@ public class PlayerScript : MonoBehaviour
     /*---- 変数宣言 ----*/
     public float move_speed = 0.01f;
     Vector3 bullet_pos;//弾の位置
-    float xLimit = 12.3f;
-    float yLimit = 12.0f;
+    float xLimit = 20.0f;
+    float yLimit = 20.0f;
     public int maxHp = 5;//最大HP
+    public bool isDamage = false;
+    public SpriteRenderer renderer;
+
+
     int hp;
+    public Slider slider;
 
     // Start is called before the first frame update
     void Start()
@@ -21,13 +28,15 @@ public class PlayerScript : MonoBehaviour
         /*---- 初期化 ----*/
         transform.position = new Vector3(0, -5, 0);
         bullet_pos = transform.Find("BulletPosition").localPosition;
+        slider.value = (float)maxHp;
         hp = maxHp;
+        renderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+
         /*---- キー移動 ----*/
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -59,13 +68,23 @@ public class PlayerScript : MonoBehaviour
 
         transform.position = new Vector2(player_pos.x, player_pos.y);
 
+        if (isDamage)
+        {
+            float level = Mathf.Abs(Mathf.Sin(Time.time * 10));
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, level);
+        }
+
     }
     void OnTriggerEnter2D(Collider2D other)
     {
         // 当たったのがエネミーの弾
-        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("EnemyBullet"))
+        if (!isDamage && other.gameObject.CompareTag("EnemyBullet"))
         {
             hp--;
+
+            isDamage = true;
+            StartCoroutine("WaitForIt");
+            slider.value = (float)hp / (float)maxHp;
 
             // 弾も消す
             Destroy(other.gameObject);
@@ -77,5 +96,14 @@ public class PlayerScript : MonoBehaviour
             Destroy(gameObject);
         }
 
+    }
+    IEnumerator WaitForIt()
+    {
+        // 1秒間処理を止める
+        yield return new WaitForSeconds(3.0f);
+
+        // １秒後ダメージフラグをfalseにして点滅を戻す
+        isDamage = false;
+        renderer.color = new Color(1f, 1f, 1f, 1f);
     }
 }
