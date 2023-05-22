@@ -10,7 +10,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject BulletPrefab;
 
     /*---- 変数宣言 ----*/
-    public float move_speed = 0.01f;
+    public float move_speed = 0.015f;
     Vector3 bullet_pos;//弾の位置
     float xLimit = 20.0f;
     float yLimit = 20.0f;
@@ -26,7 +26,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         /*---- 初期化 ----*/
-        transform.position = new Vector3(0, -5, 0);
+        transform.position = new Vector3(0, -8, 0);
         bullet_pos = transform.Find("BulletPosition").localPosition;
         slider.value = (float)maxHp;
         hp = maxHp;
@@ -99,7 +99,7 @@ public class PlayerScript : MonoBehaviour
     }
     IEnumerator WaitForIt()
     {
-        // 1秒間処理を止める
+        // 3秒間処理を止める
         yield return new WaitForSeconds(3.0f);
 
         // １秒後ダメージフラグをfalseにして点滅を戻す

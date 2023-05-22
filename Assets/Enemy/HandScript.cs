@@ -7,7 +7,7 @@ public class HandScript : MonoBehaviour
 {
     public GameObject BulletPrefab;
     public float hand_speed = 0.1f;
-    public float cricle_radius = 5.0f;
+    public float cricle_radius = 10.0f;
     private Vector3 initPosition;
     float fire_frame = 0;
     Vector3 bullet_pos;//’e‚ÌˆÊ’u
