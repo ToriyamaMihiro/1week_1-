@@ -1,19 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class HandScript : MonoBehaviour
 {
     public GameObject BulletPrefab;
-    public float hand_speed = 0.1f;
-    public float cricle_radius = 10.0f;
+    public float handSpeed = 0.1f;
+    public float cricleRadius = 10.0f;
     public int maxHp = 20;//Å‘åHP
     int hp;
 
     //’e‚Ì”­ŽË
-    float fire_frame = 0;
-    Vector3 bullet_pos;//’e‚ÌˆÊ’u
+    float fireFrame = 0;
+    Vector3 bulletPos;//’e‚ÌˆÊ’u
     public float bulletCoolTime = 25.0f;//’e‚ÌƒN[ƒ‹ƒ^ƒCƒ€
 
     //¶‰EˆÚ“®‚ÉŽg‚¤•Ï”
@@ -45,20 +42,20 @@ public class HandScript : MonoBehaviour
     {
         transform.position = new Vector3(10, 0, 0);
         StartPosition = transform.position;
-        bullet_pos = transform.Find("BulletPosition").localPosition;
+        bulletPos = transform.Find("BulletPosition").localPosition;
         hp = maxHp;
     }
 
     void Circle()
     {
         Vector2 pos = transform.position;
-        float deg = 180 * hand_speed * 10 * Time.time;
+        float deg = 180 * handSpeed * 10 * Time.time;
 
         float rad = deg * Mathf.Deg2Rad; ;
 
-        pos.x = Mathf.Cos(rad) * cricle_radius + 10;
+        pos.x = Mathf.Cos(rad) * cricleRadius + 10;
 
-        pos.y = Mathf.Sin(rad) * cricle_radius + 4;
+        pos.y = Mathf.Sin(rad) * cricleRadius + 4;
 
         transform.position = pos;
     }
@@ -106,14 +103,14 @@ public class HandScript : MonoBehaviour
         }
 
         //’e‚Ì”­ŽË
-        fire_frame++;
-        if (fire_frame % bulletCoolTime == 0)//10•b‚²‚Æ‚É”­ŽË
+        fireFrame++;
+        if (fireFrame % bulletCoolTime == 0)//10•b‚²‚Æ‚É”­ŽË
         {
-            Instantiate(BulletPrefab, transform.position + bullet_pos, Quaternion.identity);
+            Instantiate(BulletPrefab, transform.position + bulletPos, Quaternion.identity);
         }
-        if (fire_frame >= 1000)
+        if (fireFrame >= 1000)
         {
-            fire_frame = 0;
+            fireFrame = 0;
         }
     }
     void OnTriggerEnter2D(Collider2D other)

@@ -6,14 +6,14 @@ using UnityEngine;
 public class HandL : MonoBehaviour
 {
     public GameObject BulletPrefab;
-    public float hand_speed = 0.1f;
-    public float cricle_radius = 10.0f;
+    public float handSpeed = 0.1f;
+    public float cricleRadius = 10.0f;
     public int maxHp = 20;//Å‘åHP
     int hp;
 
     //’e‚Ì”­ŽË
-    float fire_frame = 0;
-    Vector3 bullet_pos;//’e‚ÌˆÊ’u
+    float fireFrame = 0;
+    Vector3 bulletPos;//’e‚ÌˆÊ’u
     public float bulletCoolTime = 25.0f;//’e‚ÌƒN[ƒ‹ƒ^ƒCƒ€
 
     //¶‰EˆÚ“®‚ÉŽg‚¤•Ï”
@@ -41,7 +41,7 @@ public class HandL : MonoBehaviour
     void Start()
     {
         transform.position = new Vector3(-9, 0, 0);
-        bullet_pos = transform.Find("BulletPosition").localPosition;
+        bulletPos = transform.Find("BulletPosition").localPosition;
         StartPosition = transform.position;
     }
 
@@ -49,14 +49,14 @@ public class HandL : MonoBehaviour
     {
         Vector3 l_pos = transform.position;
 
-        float deg = 180 * hand_speed * 10 * Time.time;
+        float deg = 180 * handSpeed * 10 * Time.time;
 
         //        float rad = hand_speed * Mathf.Deg2Rad * -1800 + Time.time;
         float rad = deg * Mathf.Deg2Rad; ;
 
-        l_pos.x = Mathf.Cos(rad) * cricle_radius - 9;
+        l_pos.x = Mathf.Cos(rad) * cricleRadius - 9;
 
-        l_pos.y = Mathf.Sin(rad) * cricle_radius + 4;
+        l_pos.y = Mathf.Sin(rad) * cricleRadius + 4;
 
         transform.position = l_pos;
 
@@ -107,14 +107,14 @@ public class HandL : MonoBehaviour
         }
 
         //’e‚Ì”­ŽË
-        fire_frame++;
-        if (fire_frame % bulletCoolTime == 0)//10•b‚²‚Æ‚É”­ŽË
+        fireFrame++;
+        if (fireFrame % bulletCoolTime == 0)//10•b‚²‚Æ‚É”­ŽË
         {
-            Instantiate(BulletPrefab, transform.position + bullet_pos, Quaternion.identity);
+            Instantiate(BulletPrefab, transform.position + bulletPos, Quaternion.identity);
         }
-        if (fire_frame >= 1000)
+        if (fireFrame >= 1000)
         {
-            fire_frame = 0;
+            fireFrame = 0;
         }
 
     }

@@ -10,12 +10,14 @@ public class PlayerScript : MonoBehaviour
     public GameObject BulletPrefab;
 
     /*---- 変数宣言 ----*/
-    public float move_speed = 0.015f;
-    Vector3 bullet_pos;//弾の位置
+    public float moveSpeed = 0.015f;
+    Vector3 bulletPos;//弾の位置
     float xLimit = 26.0f;
     float yLimit = 18.0f;
     public int maxHp = 5;//最大HP
     public bool isDamage = false;
+    public float bulletCoolTime = 25.0f;//弾のクールタイム
+    float fireFrame = 0;
     public SpriteRenderer renderer;
 
 
@@ -27,7 +29,7 @@ public class PlayerScript : MonoBehaviour
     {
         /*---- 初期化 ----*/
         transform.position = new Vector3(0, -8, 0);
-        bullet_pos = transform.Find("BulletPosition").localPosition;
+        bulletPos = transform.Find("BulletPosition").localPosition;
         slider.value = (float)maxHp;
         hp = maxHp;
         renderer = gameObject.GetComponent<SpriteRenderer>();
@@ -40,25 +42,33 @@ public class PlayerScript : MonoBehaviour
         /*---- キー移動 ----*/
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(-move_speed, 0, 0);
+            transform.Translate(-moveSpeed, 0, 0);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Translate(move_speed, 0, 0);
+            transform.Translate(moveSpeed, 0, 0);
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            transform.Translate(0, move_speed, 0);
+            transform.Translate(0, moveSpeed, 0);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            transform.Translate(0, -move_speed, 0);
+            transform.Translate(0, -moveSpeed, 0);
         }
 
         /*---- 弾の発射 ----*/
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetKey(KeyCode.Space))
         {
-            Instantiate(BulletPrefab, transform.position + bullet_pos, Quaternion.identity);
+            fireFrame++;
+            if (fireFrame % bulletCoolTime == 0)//10秒ごとに発射
+            {
+                Instantiate(BulletPrefab, transform.position + bulletPos, Quaternion.identity);
+            }
+            if (fireFrame >= 1000)
+            {
+                fireFrame = 0;
+            }
         }
 
 
