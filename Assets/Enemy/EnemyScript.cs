@@ -9,22 +9,30 @@ public class EnemyScript : MonoBehaviour
     //ïœêî
     public int maxHp = 10;
     int hp;
-    public float stopTime;
+    bool isDeath = false;
+    public float stopTime = 0.0f;
     public Slider slider;
     public GameObject explosion_effect;
+    public GameObject enemy;
 
     // Start is called before the first frame update
     void Start()
     {
         slider.value = (float)maxHp;
         hp = maxHp;
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (isDeath)
+        {
+    
+        }
+    }
+    void SceneLoad()
+    {
+        SceneManager.LoadScene("GameClear");
     }
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -40,14 +48,19 @@ public class EnemyScript : MonoBehaviour
         {
             GameObject effect = Instantiate(explosion_effect) as GameObject;
             effect.transform.position = transform.position;
-            stopTime += Time.time;
 
-            if (stopTime >= 10)
-            {
-                SceneManager.LoadScene("GameClear");
-            }
+            isDeath = true;
             // é©êgÇè¡Ç∑
-            Destroy(gameObject);
+            if (isDeath)
+            {
+                enemy.SetActive(false);
+                Invoke("SceneLoad", 1f);
+
+            }
+            //Destroy(gameObject);
+
+
         }
+
     }
 }

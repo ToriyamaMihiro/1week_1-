@@ -773,6 +773,7 @@ MonoBehaviour:
   stopTime: 0
   slider: {fileID: 171141699}
   explosion_effect: {fileID: 1940328902}
+  enemy: {fileID: 458985750}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1493,6 +1494,7 @@ MonoBehaviour:
   stopTime: 0
   slider: {fileID: 171141699}
   explosion_effect: {fileID: 0}
+  enemy: {fileID: 0}
 --- !u!1 &1707529733
 GameObject:
   m_ObjectHideFlags: 0
