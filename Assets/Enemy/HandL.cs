@@ -40,7 +40,7 @@ public class HandL : MonoBehaviour
         //        float rad = hand_speed * Mathf.Deg2Rad * -1800 + Time.time;
         float rad = deg * Mathf.Deg2Rad; ;
 
-        l_pos.x = Mathf.Cos(rad) * cricle_radius - 9;
+        l_pos.x = Mathf.Cos(rad) * cricle_radius + 9;
 
         l_pos.y = Mathf.Sin(rad) * cricle_radius + 4;
 

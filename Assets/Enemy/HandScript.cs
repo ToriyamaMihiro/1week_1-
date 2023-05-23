@@ -40,7 +40,7 @@ public class HandScript : MonoBehaviour
         float rad = deg * Mathf.Deg2Rad; ;
 
 
-        pos.x = Mathf.Cos(rad) * cricle_radius - 10;
+        pos.x = Mathf.Cos(rad) * cricle_radius + 10;
 
         pos.y = Mathf.Sin(rad) * cricle_radius+4;
 
