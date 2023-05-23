@@ -17,6 +17,7 @@ public class EnemyScript : MonoBehaviour
     {
         slider.value = (float)maxHp;
         hp = maxHp;
+        //explosion_effect = (GameObject)Resources.Load("Explosion");
     }
 
     // Update is called once per frame
@@ -38,6 +39,7 @@ public class EnemyScript : MonoBehaviour
         {
             //GameObject effect = Instantiate(explosion_effect) as GameObject;
             //effect.transform.position = transform.position;
+            //Instantiate(explosion_effect, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
             SceneManager.LoadScene("GameClear");
             // é©êgÇè¡Ç∑
             Destroy(gameObject);
