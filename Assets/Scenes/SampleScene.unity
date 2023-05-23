@@ -431,7 +431,7 @@ MonoBehaviour:
   cricleRadius: 10
   maxHp: 20
   bulletCoolTime: 50
-  leftMoveSpeed: 5
+  leftMoveSpeed: 1
 --- !u!212 &408549421
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -769,7 +769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 171141699}
-  explosion_effect: {fileID: 0}
+  explosion_effect: {fileID: 1446563837}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -6456,10 +6456,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 3428928081920624238, guid: 09d7937d7e353904d813e4491de3192a, type: 3}
-  moveSpeed: 0.05
+  moveSpeed: 0.015
   maxHp: 5
   isDamage: 0
-  bulletCoolTime: 50
+  bulletCoolTime: 25
   renderer: {fileID: 0}
   slider: {fileID: 1533796587}
 --- !u!212 &1859120426
@@ -6567,7 +6567,7 @@ MonoBehaviour:
   cricleRadius: 10
   maxHp: 20
   bulletCoolTime: 50
-  rightMoveSpeed: 5
+  rightMoveSpeed: 1
 --- !u!212 &2087823806
 SpriteRenderer:
   m_ObjectHideFlags: 0
