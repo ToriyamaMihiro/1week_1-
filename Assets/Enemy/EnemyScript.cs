@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public class EnemyScript : MonoBehaviour
 {
     //ïœêî
-    int maxHp = 10;
+    public int maxHp = 10;
     int hp;
+    public float stopTime;
     public Slider slider;
     public GameObject explosion_effect;
 
@@ -17,13 +18,13 @@ public class EnemyScript : MonoBehaviour
     {
         slider.value = (float)maxHp;
         hp = maxHp;
-        //explosion_effect = (GameObject)Resources.Load("Explosion");
+
     }
 
     // Update is called once per frame
     void Update()
     {
-     
+
     }
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -37,10 +38,14 @@ public class EnemyScript : MonoBehaviour
         }
         if (hp <= 0)
         {
-            //GameObject effect = Instantiate(explosion_effect) as GameObject;
-            //effect.transform.position = transform.position;
-            //Instantiate(explosion_effect, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
-            SceneManager.LoadScene("GameClear");
+            GameObject effect = Instantiate(explosion_effect) as GameObject;
+            effect.transform.position = transform.position;
+            stopTime += Time.time;
+
+            if (stopTime >= 10)
+            {
+                SceneManager.LoadScene("GameClear");
+            }
             // é©êgÇè¡Ç∑
             Destroy(gameObject);
         }
