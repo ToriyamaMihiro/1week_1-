@@ -28,7 +28,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         /*---- 初期化 ----*/
-        transform.position = new Vector3(0, -8, 0);
+        transform.position = new Vector3(0, -14.5f, 0);
         bulletPos = transform.Find("BulletPosition").localPosition;
         slider.value = (float)maxHp;
         hp = maxHp;

@@ -10,6 +10,7 @@ public class HandL : MonoBehaviour
     public float cricleRadius = 10.0f;
     public int maxHp = 20;//Å‘åHP
     int hp;
+    public GameObject explosion_effect;
 
     //’e‚Ì”­ŽË
     float fireFrame = 0;
@@ -79,7 +80,7 @@ public class HandL : MonoBehaviour
 
                 transform.position = new Vector3(transform.position.x + leftMoveSpeed * Time.deltaTime * direction, StartPosition.y, StartPosition.z);
 
-                if (transform.position.x >= -2)
+                if (transform.position.x >= 0)
                 {
                     direction = -1;
                 }
@@ -131,6 +132,8 @@ public class HandL : MonoBehaviour
         }
         if (hp <= 0)
         {
+            GameObject effect = Instantiate(explosion_effect) as GameObject;
+            effect.transform.position = transform.position;
             // Ž©g‚ðÁ‚·
             Destroy(gameObject);
         }

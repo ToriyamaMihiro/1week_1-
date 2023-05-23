@@ -7,6 +7,8 @@ public class HandScript : MonoBehaviour
     public float cricleRadius = 10.0f;
     public int maxHp = 20;//ç≈ëÂHP
     int hp;
+    public GameObject explosion_effect;
+
 
     //íeÇÃî≠éÀ
     float fireFrame = 0;
@@ -79,7 +81,7 @@ public class HandScript : MonoBehaviour
                 {
                     direction = -1;
                 }
-                if (transform.position.x <= 2)
+                if (transform.position.x <= 0)
                 {
                     direction = 1;
                 }
@@ -125,9 +127,11 @@ public class HandScript : MonoBehaviour
         }
         if (hp <= 0)
         {
+            GameObject effect = Instantiate(explosion_effect) as GameObject;
+            effect.transform.position = transform.position;
             // é©êgÇè¡Ç∑
             Destroy(gameObject);
-            Debug.Log("Destroy");
+            
         }
 
     }
