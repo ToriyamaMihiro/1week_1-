@@ -8,14 +8,22 @@ public class HandL : MonoBehaviour
     public GameObject BulletPrefab;
     public float hand_speed = 0.1f;
     public float cricle_radius = 10.0f;
-    private Vector3 initPosition;
+    public int maxHp = 20;//Å‘åHP
+    int hp;
+
+    //’e‚Ì”­ŽË
     float fire_frame = 0;
     Vector3 bullet_pos;//’e‚ÌˆÊ’u
     public float bulletCoolTime = 25.0f;//’e‚ÌƒN[ƒ‹ƒ^ƒCƒ€
-    public int maxHp = 20;//Å‘åHP
-    int hp;
-    Vector3 l_pos;
-    float first_pos_y = 4;
+
+    //¶‰EˆÚ“®‚ÉŽg‚¤•Ï”
+    private Vector3 StartPosition;
+    private int direction = 1;
+    private float moveTime = 0.0f;
+    public float leftMoveSpeed = 1;
+
+    private float moveTimeMax = 10.0f;//Ží—Þ‚²‚Æ‚ÌŒp‘±ŽžŠÔ
+    Action action = Action.CircleMove;
 
     private void Awake()
     {
@@ -23,24 +31,30 @@ public class HandL : MonoBehaviour
 
     }
 
+    enum Action
+    {
+        CircleMove,
+        LandRMove
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(-9, first_pos_y, 0);
-        initPosition = transform.position;
+        transform.position = new Vector3(-9, 0, 0);
         bullet_pos = transform.Find("BulletPosition").localPosition;
+        StartPosition = transform.position;
     }
 
     void Circle()
     {
-        l_pos = transform.position;
+        Vector3 l_pos = transform.position;
 
         float deg = 180 * hand_speed * 10 * Time.time;
 
         //        float rad = hand_speed * Mathf.Deg2Rad * -1800 + Time.time;
         float rad = deg * Mathf.Deg2Rad; ;
 
-        l_pos.x = Mathf.Cos(rad) * cricle_radius + 9;
+        l_pos.x = Mathf.Cos(rad) * cricle_radius - 9;
 
         l_pos.y = Mathf.Sin(rad) * cricle_radius + 4;
 
@@ -53,7 +67,44 @@ public class HandL : MonoBehaviour
     void Update()
     {
 
-        Circle();
+        switch (action)
+        {
+            //‰~ˆÚ“®
+            case Action.CircleMove:
+                Circle();
+                break;
+
+            //¶‰EˆÚ“®
+            case Action.LandRMove:
+
+                transform.position = new Vector3(transform.position.x + leftMoveSpeed * Time.deltaTime * direction, StartPosition.y, StartPosition.z);
+
+                if (transform.position.x >= -2)
+                {
+                    direction = -1;
+                }
+                if (transform.position.x <= -20)
+                {
+                    direction = 1;
+                }
+                break;
+        }
+
+        //ƒV[ƒ“‚ÌØ‚è‘Ö‚¦
+        moveTime += Time.deltaTime;
+        if (moveTime > moveTimeMax)
+        {
+            if (action == Action.LandRMove)
+            {
+                action = Action.CircleMove;
+
+            }
+            else if (action == Action.CircleMove)
+            {
+                action = Action.LandRMove;
+            }
+            moveTime = 0f;
+        }
 
         //’e‚Ì”­ŽË
         fire_frame++;

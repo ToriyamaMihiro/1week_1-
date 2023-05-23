@@ -10,7 +10,6 @@ public class HandScript : MonoBehaviour
     public float cricle_radius = 10.0f;
     public int maxHp = 20;//Å‘åHP
     int hp;
-    float first_pos_y = 4;
 
     //’e‚Ì”­ŽË
     float fire_frame = 0;
@@ -21,13 +20,11 @@ public class HandScript : MonoBehaviour
     private Vector3 StartPosition;
     private int direction = 1;
     private float moveTime = 0.0f;
-    private bool isChange = false;
-    public float limitMove = 22;
     public float rightMoveSpeed = 1;
 
 
     private float moveTimeMax = 10.0f;//Ží—Þ‚²‚Æ‚ÌŒp‘±ŽžŠÔ
-    Action action = Action.LandRMove;
+    Action action = Action.CircleMove;
 
 
     private void Awake()
@@ -46,11 +43,10 @@ public class HandScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(10, first_pos_y, 0);
+        transform.position = new Vector3(10, 0, 0);
         StartPosition = transform.position;
         bullet_pos = transform.Find("BulletPosition").localPosition;
         hp = maxHp;
-        action = Action.CircleMove;
     }
 
     void Circle()
@@ -67,8 +63,6 @@ public class HandScript : MonoBehaviour
         transform.position = pos;
     }
 
-
-
     // Update is called once per frame
     void Update()
     {
@@ -78,45 +72,37 @@ public class HandScript : MonoBehaviour
             case Action.CircleMove:
                 Circle();
                 break;
+
             //¶‰EˆÚ“®
             case Action.LandRMove:
-                //if (!isChange)
-                //{
-                    transform.position = new Vector3(transform.position.x + rightMoveSpeed * Time.deltaTime * direction, StartPosition.y, StartPosition.z);
 
-               // }
-                if (transform.position.x >= limitMove)
+                transform.position = new Vector3(transform.position.x + rightMoveSpeed * Time.deltaTime * direction, StartPosition.y, StartPosition.z);
+
+                if (transform.position.x >= 20)
                 {
                     direction = -1;
                 }
-                if (transform.position.x <= -limitMove)
+                if (transform.position.x <= 2)
                 {
                     direction = 1;
                 }
                 break;
         }
+
         //ƒV[ƒ“‚ÌØ‚è‘Ö‚¦
         moveTime += Time.deltaTime;
         if (moveTime > moveTimeMax)
         {
             if (action == Action.LandRMove)
             {
-                isChange = true;
-            //    transform.position = Vector3.MoveTowards(transform.position, StartPosition, rightMoveSpeed * Time.deltaTime);
-                if (transform.position.x == StartPosition.x)
-                {
-                    isChange = false;
-                    action = Action.CircleMove;
-                    moveTime = 0f;
-                }
+                action = Action.CircleMove;
+               
             }
             else if (action == Action.CircleMove)
             {
                 action = Action.LandRMove;
-                moveTime = 0f;
-
             }
-
+                moveTime = 0f;
         }
 
         //’e‚Ì”­ŽË
