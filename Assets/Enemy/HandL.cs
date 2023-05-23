@@ -6,7 +6,7 @@ using UnityEngine;
 public class HandL : MonoBehaviour
 {
     public GameObject BulletPrefab;
-    public float handSpeed = 0.1f;
+    public float handSpeed = -0.1f;
     public float cricleRadius = 10.0f;
     public int maxHp = 20;//ç≈ëÂHP
     int hp;

@@ -10,13 +10,13 @@ public class PlayerScript : MonoBehaviour
     public GameObject BulletPrefab;
 
     /*---- 変数宣言 ----*/
-    public float moveSpeed = 0.015f;
+    public float moveSpeed = 0.05f;
     Vector3 bulletPos;//弾の位置
     float xLimit = 26.0f;
     float yLimit = 18.0f;
     public int maxHp = 5;//最大HP
     public bool isDamage = false;
-    public float bulletCoolTime = 25.0f;//弾のクールタイム
+    public float bulletCoolTime = 50.0f;//弾のクールタイム
     float fireFrame = 0;
     public SpriteRenderer renderer;
 
