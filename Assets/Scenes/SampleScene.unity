@@ -427,7 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 8317962311919134441, guid: 4c71263c48defde4999b57e1d67ca16d, type: 3}
-  handSpeed: 0.1
+  handSpeed: -0.1
   cricleRadius: 10
   maxHp: 20
   bulletCoolTime: 50
@@ -6456,10 +6456,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 3428928081920624238, guid: 09d7937d7e353904d813e4491de3192a, type: 3}
-  moveSpeed: 0.015
+  moveSpeed: 0.05
   maxHp: 5
   isDamage: 0
-  bulletCoolTime: 25
+  bulletCoolTime: 50
   renderer: {fileID: 0}
   slider: {fileID: 1533796587}
 --- !u!212 &1859120426
