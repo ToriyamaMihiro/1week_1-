@@ -12,8 +12,8 @@ public class PlayerScript : MonoBehaviour
     /*---- 変数宣言 ----*/
     public float move_speed = 0.015f;
     Vector3 bullet_pos;//弾の位置
-    float xLimit = 20.0f;
-    float yLimit = 20.0f;
+    float xLimit = 26.0f;
+    float yLimit = 18.0f;
     public int maxHp = 5;//最大HP
     public bool isDamage = false;
     public SpriteRenderer renderer;

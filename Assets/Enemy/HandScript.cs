@@ -15,10 +15,18 @@ public class HandScript : MonoBehaviour
     public int maxHp = 20;//最大HP
     int hp;
 
+    float first_pos_y = 4;
+
+    private void Awake()
+    {
+        hp = maxHp;
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(0, 0, 0);
+        transform.position = new Vector3(10, first_pos_y, 0);
         initPosition = transform.position;
         bullet_pos = transform.Find("BulletPosition").localPosition;
         hp = maxHp;
@@ -27,12 +35,14 @@ public class HandScript : MonoBehaviour
     void Circle()
     {
         Vector2 pos = transform.position;
+        float deg = 180 * hand_speed * 10 * Time.time;
 
-        float rad = hand_speed * Mathf.Rad2Deg * Time.time;
+        float rad = deg * Mathf.Deg2Rad; ;
 
-        pos.x = Mathf.Cos(rad) * cricle_radius;
 
-        pos.y = Mathf.Sin(rad) * cricle_radius;
+        pos.x = Mathf.Cos(rad) * cricle_radius - 10;
+
+        pos.y = Mathf.Sin(rad) * cricle_radius+4;
 
         transform.position = pos;
 
@@ -62,15 +72,15 @@ public class HandScript : MonoBehaviour
         // 当たったのがプレイヤーの弾
         if (other.gameObject.CompareTag("PlayerBullet"))
         {
-           hp--;
+            hp--;
 
             // 弾も消す
-           Destroy(other.gameObject);
+            Destroy(other.gameObject);
         }
         if (hp <= 0)
         {
             // 自身を消す
-         // Destroy(gameObject);
+            Destroy(gameObject);
             Debug.Log("Destroy");
         }
 

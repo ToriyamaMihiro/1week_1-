@@ -10,6 +10,7 @@ public class EnemyScript : MonoBehaviour
     int maxHp = 10;
     int hp;
     public Slider slider;
+    public GameObject explosion_effect;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,8 @@ public class EnemyScript : MonoBehaviour
         }
         if (hp <= 0)
         {
+            //GameObject effect = Instantiate(explosion_effect) as GameObject;
+            //effect.transform.position = transform.position;
             SceneManager.LoadScene("GameClear");
             // Ž©g‚ðÁ‚·
             Destroy(gameObject);

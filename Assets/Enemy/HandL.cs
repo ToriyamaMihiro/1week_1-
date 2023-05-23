@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class HandL : MonoBehaviour
@@ -13,25 +14,35 @@ public class HandL : MonoBehaviour
     public float bulletCoolTime = 25.0f;//弾のクールタイム
     public int maxHp = 20;//最大HP
     int hp;
+    Vector3 l_pos;
+    float first_pos_y = 4;
+
+    private void Awake()
+    {
+        hp = maxHp;
+
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(0,0 , 0);
+        transform.position = new Vector3(-9, first_pos_y, 0);
         initPosition = transform.position;
         bullet_pos = transform.Find("BulletPosition").localPosition;
-        hp = maxHp;
     }
 
     void Circle()
     {
-        Vector3 l_pos = transform.position;
+        l_pos = transform.position;
 
-        float rad = hand_speed * Mathf.Rad2Deg * Time.time;
+        float deg = 180 * hand_speed * 10 * Time.time;
 
-        l_pos.x = Mathf.Cos(rad) * cricle_radius;
+        //        float rad = hand_speed * Mathf.Deg2Rad * -1800 + Time.time;
+        float rad = deg * Mathf.Deg2Rad; ;
 
-        l_pos.y = Mathf.Sin(rad) * cricle_radius;
+        l_pos.x = Mathf.Cos(rad) * cricle_radius - 9;
+
+        l_pos.y = Mathf.Sin(rad) * cricle_radius + 4;
 
         transform.position = l_pos;
 
@@ -62,15 +73,15 @@ public class HandL : MonoBehaviour
         // 当たったのがプレイヤーの弾
         if (other.gameObject.CompareTag("PlayerBullet"))
         {
-           hp--;
+            hp--;
 
             // 弾も消す
-           Destroy(other.gameObject);
+            Destroy(other.gameObject);
         }
         if (hp <= 0)
         {
             // 自身を消す
-          //  Destroy(gameObject);
+            Destroy(gameObject);
         }
 
     }
