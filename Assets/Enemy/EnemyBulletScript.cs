@@ -7,7 +7,7 @@ public class EnemyBulletScript : MonoBehaviour
     /*---- •Ï” ----*/
     public float bullet_speed = 20.0f;         // ˆÚ“®’l
     int frame_count = 0;
-    const int delete_frame = 480;
+    const int delete_frame =    510;
 
     // Start is called before the first frame update
     void Start()

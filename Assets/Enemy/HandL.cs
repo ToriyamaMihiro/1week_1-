@@ -25,7 +25,7 @@ public class HandL : MonoBehaviour
     private float moveTime = 0.0f;
     public float leftMoveSpeed = 1;
 
-    private float moveTimeMax = 10.0f;//Ží—Þ‚²‚Æ‚ÌŒp‘±ŽžŠÔ
+    private float moveTimeMax = 9.0f;//Ží—Þ‚²‚Æ‚ÌŒp‘±ŽžŠÔ
     Action action = Action.CircleMove;
 
     private void Awake()

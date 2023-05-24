@@ -16,7 +16,7 @@ public class PlayerScript : MonoBehaviour
     float yLimit = 18.0f;
     public int maxHp = 5;//最大HP
     public bool isDamage = false;
-    public float bulletCoolTime = 50.0f;//弾のクールタイム
+    public float bulletCoolTime = 170.0f;//弾のクールタイム
     float fireFrame = 0;
     public SpriteRenderer playerRenderer;
 
