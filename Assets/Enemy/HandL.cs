@@ -16,7 +16,7 @@ public class HandL : MonoBehaviour
 
     //’e‚Ì”­ŽË
     float fireFrame = 0;
-    Vector3 bulletPos;//’e‚ÌˆÊ’u
+    public Transform bulletPos;//’e‚ÌˆÊ’u
     public float bulletCoolTime = 25.0f;//’e‚ÌƒN[ƒ‹ƒ^ƒCƒ€
 
     //¶‰EˆÚ“®‚ÉŽg‚¤•Ï”
@@ -44,7 +44,6 @@ public class HandL : MonoBehaviour
     void Start()
     {
         transform.position = new Vector3(-9, 0, 0);
-        bulletPos = transform.Find("BulletPosition").localPosition;
         StartPosition = transform.position;
     }
 
@@ -127,7 +126,7 @@ public class HandL : MonoBehaviour
         fireFrame++;
         if (fireFrame % bulletCoolTime == 0)//10•b‚²‚Æ‚É”­ŽË
         {
-            Instantiate(BulletPrefab, transform.position + bulletPos, Quaternion.identity);
+            Instantiate(BulletPrefab, transform.position, Quaternion.identity);
         }
         if (fireFrame >= 1000)
         {

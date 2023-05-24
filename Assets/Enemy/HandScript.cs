@@ -14,7 +14,7 @@ public class HandScript : MonoBehaviour
 
     //’e‚Ì”­ŽË
     float fireFrame = 0;
-    Vector3 bulletPos;//’e‚ÌˆÊ’u
+   [SerializeField] Transform bulletPos;//’e‚ÌˆÊ’u
     public float bulletCoolTime = 25.0f;//’e‚ÌƒN[ƒ‹ƒ^ƒCƒ€
 
     //¶‰EˆÚ“®‚ÉŽg‚¤•Ï”
@@ -44,7 +44,6 @@ public class HandScript : MonoBehaviour
     {
         transform.position = new Vector3(10, 0, 0);
         StartPosition = transform.position;
-        bulletPos = transform.Find("BulletPosition").localPosition;
         hp = maxHp;
     }
 
@@ -122,7 +121,7 @@ public class HandScript : MonoBehaviour
         fireFrame++;
         if (fireFrame % bulletCoolTime == 0)//10•b‚²‚Æ‚É”­ŽË
         {
-            Instantiate(BulletPrefab, transform.position + bulletPos, Quaternion.identity);
+            Instantiate(BulletPrefab, transform.position, Quaternion.identity);
         }
         if (fireFrame >= 1000)
         {

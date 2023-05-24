@@ -431,6 +431,7 @@ MonoBehaviour:
   cricleRadius: 10
   maxHp: 40
   explosion_effect: {fileID: 1940328902}
+  bulletPos: {fileID: 826558943}
   bulletCoolTime: 130
   leftMoveSpeed: 9
 --- !u!212 &408549421
@@ -6590,6 +6591,7 @@ MonoBehaviour:
   cricleRadius: 10
   maxHp: 40
   explosion_effect: {fileID: 1940328902}
+  bulletPos: {fileID: 826558943}
   bulletCoolTime: 130
   rightMoveSpeed: 9
 --- !u!212 &2087823806
