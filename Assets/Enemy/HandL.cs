@@ -10,7 +10,9 @@ public class HandL : MonoBehaviour
     public float cricleRadius = 10.0f;
     public int maxHp = 20;//ç≈ëÂHP
     int hp;
+    bool isHit = false;
     public GameObject explosion_effect;
+    float hitTimer = 0.0f;
 
     //íeÇÃî≠éÀ
     float fireFrame = 0;
@@ -67,6 +69,20 @@ public class HandL : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isHit)
+        {
+            GetComponent<SpriteRenderer>().color = Color.red;
+            hitTimer++;
+            if (hitTimer >= 30)
+            {
+                isHit = false;
+                hitTimer = 0;
+            }
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
 
         switch (action)
         {
@@ -126,7 +142,7 @@ public class HandL : MonoBehaviour
         if (other.gameObject.CompareTag("PlayerBullet"))
         {
             hp--;
-
+            isHit = true;
             // íeÇ‡è¡Ç∑
             Destroy(other.gameObject);
         }

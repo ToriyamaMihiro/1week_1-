@@ -1387,7 +1387,6 @@ GameObject:
   - component: {fileID: 1546734543}
   - component: {fileID: 1546734542}
   - component: {fileID: 1546734541}
-  - component: {fileID: 1546734545}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1478,23 +1477,6 @@ RectTransform:
   m_AnchoredPosition: {x: 245, y: 190.6}
   m_SizeDelta: {x: 490, y: 381.2}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1546734545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1546734540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a14768757499ea4eadc6d3942f22705, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 10
-  stopTime: 0
-  slider: {fileID: 171141699}
-  explosion_effect: {fileID: 0}
-  enemy: {fileID: 0}
 --- !u!1 &1707529733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1655,7 +1637,7 @@ MonoBehaviour:
   maxHp: 5
   isDamage: 0
   bulletCoolTime: 110
-  renderer: {fileID: 0}
+  playerRenderer: {fileID: 0}
   slider: {fileID: 1533796587}
 --- !u!212 &1859120426
 SpriteRenderer:

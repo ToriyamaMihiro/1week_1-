@@ -8,6 +8,8 @@ public class HandScript : MonoBehaviour
     public int maxHp = 20;//ç≈ëÂHP
     int hp;
     public GameObject explosion_effect;
+    bool isHit = false;
+    float hitTimer = 0.0f;
 
 
     //íeÇÃî≠éÀ
@@ -29,8 +31,6 @@ public class HandScript : MonoBehaviour
     private void Awake()
     {
         hp = maxHp;
-
-
     }
     enum Action
     {
@@ -65,6 +65,20 @@ public class HandScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isHit)
+        {
+            GetComponent<SpriteRenderer>().color = Color.red;
+            hitTimer++;
+            if (hitTimer >= 30)
+            {
+                isHit = false;
+                hitTimer = 0;
+            }
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
         switch (action)
         {
             //â~à⁄ìÆ
@@ -121,6 +135,7 @@ public class HandScript : MonoBehaviour
         if (other.gameObject.CompareTag("PlayerBullet"))
         {
             hp--;
+            isHit = true;
 
             // íeÇ‡è¡Ç∑
             Destroy(other.gameObject);

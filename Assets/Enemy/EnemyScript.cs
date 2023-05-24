@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,10 +11,12 @@ public class EnemyScript : MonoBehaviour
     public int maxHp = 10;
     int hp;
     bool isDeath = false;
+    bool isHit = false;
     public float stopTime = 0.0f;
     public Slider slider;
     public GameObject explosion_effect;
     public GameObject enemy;
+    float hitTimer = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -25,9 +28,19 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isDeath)
+        if (isHit)
         {
-    
+            GetComponent<SpriteRenderer>().color = Color.red;
+            hitTimer++;
+            if (hitTimer >= 30)
+            {
+                isHit = false;
+                hitTimer = 0;
+            }
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
     void SceneLoad()
@@ -39,8 +52,10 @@ public class EnemyScript : MonoBehaviour
         // ìñÇΩÇ¡ÇΩÇÃÇ™ÉvÉåÉCÉÑÅ[ÇÃíe
         if (other.gameObject.CompareTag("PlayerBullet"))
         {
+            isHit = true;
             hp--;
             slider.value = (float)hp / (float)maxHp;
+
             // íeÇ‡è¡Ç∑
             Destroy(other.gameObject);
         }
@@ -57,10 +72,6 @@ public class EnemyScript : MonoBehaviour
                 Invoke("SceneLoad", 1f);
 
             }
-            //Destroy(gameObject);
-
-
         }
-
     }
 }

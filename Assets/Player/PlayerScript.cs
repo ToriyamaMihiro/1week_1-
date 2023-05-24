@@ -18,7 +18,7 @@ public class PlayerScript : MonoBehaviour
     public bool isDamage = false;
     public float bulletCoolTime = 50.0f;//弾のクールタイム
     float fireFrame = 0;
-    public SpriteRenderer renderer;
+    public SpriteRenderer playerRenderer;
 
 
     int hp;
@@ -32,7 +32,7 @@ public class PlayerScript : MonoBehaviour
         bulletPos = transform.Find("BulletPosition").localPosition;
         slider.value = (float)maxHp;
         hp = maxHp;
-        renderer = gameObject.GetComponent<SpriteRenderer>();
+        playerRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -114,6 +114,6 @@ public class PlayerScript : MonoBehaviour
 
         // １秒後ダメージフラグをfalseにして点滅を戻す
         isDamage = false;
-        renderer.color = new Color(1f, 1f, 1f, 1f);
+        playerRenderer.color = new Color(1f, 1f, 1f, 1f);
     }
 }
