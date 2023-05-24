@@ -28,7 +28,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         /*---- 初期化 ----*/
-        transform.position = new Vector3(0, -14.5f, 0);
+        transform.position = new Vector3(0, -13.0f, 0);
         bulletPos = transform.Find("BulletPosition").localPosition;
         slider.value = (float)maxHp;
         hp = maxHp;
@@ -48,14 +48,15 @@ public class PlayerScript : MonoBehaviour
         {
             transform.Translate(moveSpeed, 0, 0);
         }
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            transform.Translate(0, moveSpeed, 0);
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            transform.Translate(0, -moveSpeed, 0);
-        }
+
+        //if (Input.GetKey(KeyCode.UpArrow))
+        //{
+        //    transform.Translate(0, moveSpeed, 0);
+        //}
+        //if (Input.GetKey(KeyCode.DownArrow))
+        //{
+        //    transform.Translate(0, -moveSpeed, 0);
+        //}
 
         /*---- 弾の発射 ----*/
         if (Input.GetKey(KeyCode.Space))

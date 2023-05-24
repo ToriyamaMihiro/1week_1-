@@ -17,6 +17,7 @@ public class EnemyScript : MonoBehaviour
     public GameObject explosion_effect;
     public GameObject enemy;
     float hitTimer = 0.0f;
+    public float moveSpeed = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,10 @@ public class EnemyScript : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().color = Color.white;
         }
+
+        //“®‚­
+        
+
     }
     void SceneLoad()
     {
