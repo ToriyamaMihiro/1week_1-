@@ -1448,7 +1448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a14768757499ea4eadc6d3942f22705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 30
+  maxHp: 35
   stopTime: 0
   slider: {fileID: 171141699}
   explosion_effect: {fileID: 1940328902}
