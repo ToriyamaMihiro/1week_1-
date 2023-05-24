@@ -899,8 +899,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913924358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.1, z: 0}
-  m_LocalScale: {x: 5.55, y: 5.55, z: 1}
+  m_LocalPosition: {x: -0.046, y: 0.1, z: 0}
+  m_LocalScale: {x: 5.214452, y: 5.55, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1236,6 +1236,7 @@ GameObject:
   - component: {fileID: 1546734543}
   - component: {fileID: 1546734542}
   - component: {fileID: 1546734541}
+  - component: {fileID: 1546734545}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1464,7 +1465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a14768757499ea4eadc6d3942f22705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 10
+  maxHp: 30
   stopTime: 0
   slider: {fileID: 171141699}
   explosion_effect: {fileID: 1940328902}
@@ -1503,7 +1504,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.000000059604645, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1514,7 +1515,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.78602874, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &1707529733
 GameObject:
@@ -1672,10 +1673,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 3428928081920624238, guid: 09d7937d7e353904d813e4491de3192a, type: 3}
-  moveSpeed: 0.055
+  moveSpeed: 0.06
   maxHp: 5
   isDamage: 0
-  bulletCoolTime: 110
+  bulletCoolTime: 90
   playerRenderer: {fileID: 0}
   slider: {fileID: 1533796587}
 --- !u!212 &1859120426
